@@ -129,3 +129,21 @@ NOTE: We always end our routes with a forward slash i.e, "/"
 >> go to app_name
 >> create a folder called "templates" 
 >> create html file ex; index.html  
+### templates
+> create a folder called templates in : members/templates
+> create html file inside this folder
+
+#### Modify the view.py
+>from django.template import loader
+>from django.http import HttpResponse
+from django.template import loader
+<!-- 
+def members(request):
+  template = loader.get_template('index.html')
+  return HttpResponse(template.render()) -->
+
+#### Then run this command:
+run: py manage.py migrate
+
+>> Now check the server is running or not, if not then start the server
+run: py manage.py runserver
