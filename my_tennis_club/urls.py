@@ -20,6 +20,6 @@ from members import urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('members/', include(urls)),
+    path('', include(urls)),
     
 ]

@@ -1,0 +1,55 @@
+{% comment %} <!DOCTYPE html>
+<html>
+<body>
+
+{% for x in fruits %}
+  <h1>{{ x }}</h1>
+{% endfor %}
+
+<p>In views.py you can see what the fruits variable looks like.</p>
+
+</body>
+</html>  {% endcomment %}
+
+{% comment %} Using Template Variables {% endcomment %}
+{% comment %} {% with firstname="Tobias" %}
+<h1>Hello {{ firstname }}, how are you?</h1>
+{% endwith %} {% endcomment %}
+
+{% comment %} Django template tags {% endcomment %}
+{% comment %} {% if greeting == 1 %}
+  <h1>Hello</h1>
+{% else %}
+  <h1>Bye</h1>
+{% endif %} {% endcomment %}
+
+{% comment %} adding static(css) {% endcomment %}
+{% comment %} {% load static %}
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="{% static 'myfirst.css' %}">
+<body>
+
+{% for x in fruits %}
+  <h1>{{ x }}</h1>
+{% endfor %}
+
+<p>In myfirst.css you can see what the stylesheet looks like.</p>
+
+</body>
+</html>                   {% endcomment %}
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="{% static 'myglobal.css' %}">
+<body>
+
+{% for x in fruits %}
+  <h1>{{ x }}</h1>
+{% endfor %}
+
+<p>In myglobal.css you can see what the stylesheet looks like.</p>
+
+</body>
+</html>     
