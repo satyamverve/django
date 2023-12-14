@@ -435,6 +435,12 @@ run: "python manage.py collectstatic">
 (customize the styling according to your need)
 
 # DATABASE CONNECTION(MY-SQL)
+>navigate: head_project_name/project_name/__init__.py
+>> add pymysql
+i.e., 
+import pymysql
+pymysql.install_as_MySQLdb()
+
 > Navigate to "settings.py" file and add your db details
 DATABASES = {
     'default': {
