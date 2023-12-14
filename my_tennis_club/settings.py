@@ -1,4 +1,6 @@
 
+# settings.py
+ALLOWED_HOSTS = ['satyam.com']
 
 """
 Django settings for my_tennis_club project.

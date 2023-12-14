@@ -492,3 +492,47 @@ def home_view(request):
 	return render(request, "home.html", context)
 
 
+
+
+# UBUNTU HOSTING
+<VirtualHost *:80>
+    ServerAdmin webmaster@localhost
+    DocumentRoot /home/verve/projects/django
+
+    ServerName satyam.com
+
+    Alias /static/ /home/verve/projects/django/static/
+    <Directory /home/verve/projects/django/static>
+        Require all granted
+    </Directory>
+
+    Alias /media/ /home/verve/projects/django/media/
+    <Directory /home/verve/projects/django/media>
+        Require all granted
+    </Directory>
+
+    <Directory /home/verve/projects/django>
+        <Files wsgi.py>
+            Require all granted
+        </Files>
+    </Directory>
+
+    WSGIDaemonProcess satyam.com python-path=/home/verve/projects/django
+    WSGIProcessGroup satyam.com
+    WSGIScriptAlias / /home/verve/projects/django/your_project_name/wsgi.py
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+
+>sudo a2ensite satyam.com.conf
+>sudo systemctl restart apache2
+>python manage.py collectstatic
+>python manage.py makemigrations
+>python manage.py migrate
+>sudo systemctl status apache2
+
+
+
+
+
