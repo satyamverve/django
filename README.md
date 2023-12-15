@@ -495,6 +495,9 @@ def home_view(request):
 
 
 # UBUNTU HOSTING
+<run: sudo nano /etc/apache2/sites-available/mywebsite.conf>
+
+
 <VirtualHost *:80>
     ServerAdmin webmaster@localhost
     DocumentRoot /home/verve/projects/django
@@ -525,6 +528,10 @@ def home_view(request):
     CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 
+run: <sudo nano /etc/hosts>
+
+
+# reload
 >sudo a2ensite satyam.com.conf
 >sudo systemctl restart apache2
 >python manage.py collectstatic
@@ -533,6 +540,75 @@ def home_view(request):
 >sudo systemctl status apache2
 
 
+<sudo apt install libapache2-mod-wsgi-py3>
+<command to check apache2 is running: sudo systemctl status apache2>
+
+>>add this lines in "/django/my_tennis_club/wsgi.py" to prevent path permission
+<import sys
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(BASE_DIR)
+>
+
+>>go to terminal
+><sudo nano /etc/apache2/sites-available/000-default.conf>
+
+<!-- add the below lines in this file between: -->
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+        # For most configuration files from conf-available/, which are
+        # enabled or disabled at a global level, it is possible to
+        # include a line for only one particular virtual host. For example the
+        # following line enables the CGI configuration for this host only
+        # after it has been globally disabled with "a2disconf".
+        #Include conf-available/serve-cgi-bin.conf
+        
+        (PASTE THE FILE HERE)
+
+</VirtualHost>
+
+### file detail :
 
 
+LoadModule wsgi module /usr/lib/apache2/modules/mod_wsgi.so
+        Alias /static /var/www/html/django/static 
+    <Directory /home/verve/Desktop/training/django/static>
+        Require all granted
+    </Directory>
 
+    <Directory /home/verve/Desktop/training/django/my_tennis_club>
+        <Files wsgi.py>
+            Require all granted
+        </Files>
+    </Directory>
+
+    WSGIDaemonProcess test python-path=/usr/bin/python3
+    WSGIProcessGroup test
+    WSGIScriptAlias / /var/www/html/django/my_tennis_club/wsgi.>
+
+
+LoadModule wsgi_module /usr/lib/apache2/modules/mod_wsgi.so
+<VirtualHost *:80>
+    ServerName satyam.com
+    ServerAdmin webmaster@localhost
+    DocumentRoot /home/verve/Desktop/training/django/my_tennis_club
+
+    Alias /static /var/www/html/django/members/static
+    <Directory /home/verve/Desktop/training/django/members/static>
+        Require all granted
+    </Directory>
+
+    <Directory /home/verve/Desktop/training/django/my_tennis_club>
+        <Files wsgi.py>
+            Require all granted
+        </Files>
+    </Directory>
+
+    WSGIDaemonProcess test python-path=/usr/bin/python3
+    WSGIProcessGroup test
+    WSGIScriptAlias / /var/www/html/django/my_tennis_club/wsgi.>
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
