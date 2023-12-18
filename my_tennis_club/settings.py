@@ -1,6 +1,7 @@
 
 # settings.py
-ALLOWED_HOSTS = ['satyam.com']
+ALLOWED_HOSTS = ['192.168.1.114', 'localhost', '127.0.0.1']
+
 
 """
 Django settings for my_tennis_club project.
