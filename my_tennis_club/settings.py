@@ -58,6 +58,9 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'my_tennis_club.urls'
 
+
+#First install mysqlclient e.x
+# sudo apt-get install python3-dev default-libmysqlclient-dev build-essential pkg-config
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -87,6 +90,9 @@ WSGI_APPLICATION = 'my_tennis_club.wsgi.application'
 #     }
 # }
 
+#install mysql client
+#run: sudo apt-get install python3-dev default-libmysqlclient-dev build-essential pkg-config
+#pip install mysqlclient
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',

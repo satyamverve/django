@@ -3,10 +3,10 @@
 <install: pip install Django>
 <upgrade: pip install --upgrade Django>
 <version: python3 -m django --version>
-<start_project: django-admin startproject project_name> <!-- use . to avoid head_folder -->
+<start_project: django-admin startproject project_name> <!-- this will create the django_admin and use (.) to avoid head_folder -->
 <run_server: python3 manage.py runserver>
-<create_app: run: py manage.py startapp app_name>
-<migrate: python manage.py migrate>  <!-- run this after modify "views.py" -->
+<create_app: run: python3 manage.py startapp app_name>
+<migrate: python3 manage.py migrate>  <!-- run this after modify "views.py" -->
 <make_migrations: python manage.py makemigrations members>  <!-- run this after describing "models" in "app" file -->
 <!-- after running this command a automated file created nameed "0001_initial.py" at "django/members/migrations/" location -->
 <view_sql: python manage.py sqlmigrate members 0001>   <!-- 0001 is the file created after migration -->
@@ -14,7 +14,7 @@
 <view_records: Member.objects.all().values()>
 <NOTE: After every changes we have to run the migration command i.e, "python manage.py makemigrations members" and "python manage.py migrate">
 <whitehouse: pip install whitenoise> <!-- use to serve static files(javscripts, styling etcv these are called static files) in Django -->
-<collect_static_files: python manage.py collectstatic>
+<collect_static_files: python3 manage.py collectstatic> <!-- This will create a folder "productionfiles"(code is written in settings.py) to collect the static files -->
 <create_super_user: python3 manage.py createsuperuser> <!-- for creating SUPERUSER first need to run: python manage.py migrate -->
 
 
@@ -38,7 +38,7 @@ run(ubuntu): python manage.py runserver 9000  <!-- you can give your specific po
 An app is a web application that has a specific meaning in your project, like a home page, a contact form, or a members database.
 
 I will name my app "members"
->run: py manage.py startapp members
+>run: python manage.py startapp members
 >> This will creates a folder called "members" with some files
 
 folder structure:
@@ -398,7 +398,7 @@ i.e, django/mystaticfiles
 i.,e django/mystaticfiles/myglobal.css
 
 > Open the "myglobal.css" and add the styling for global applications in your project
->> Modify Settings > my_tennis_club/my_tennis_club/settings.py > Add a STATICFILES_DIRS list
+>> Modify Settings > django/my_tennis_club/settings.py > Add a STATICFILES_DIRS list
 
 <NOTE:
 In the STATICFILES_DIRS list, you can list all the directories where Django should look for static files.
