@@ -63,11 +63,12 @@ django
 #### Modify the view.py
 >from django.template import loader
 >from django.http import HttpResponse
-from django.template import loader
 <!-- 
 def members(request):
   template = loader.get_template('index.html')
   return HttpResponse(template.render()) -->
+
+[if you get error then add your app file name in settings.py file under INSTALLED_APPS]
 
 #### Then run this command:
 run: py manage.py migrate
