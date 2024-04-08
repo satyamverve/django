@@ -1,6 +1,6 @@
-# django
+# Django
 ## ALL COMMANDS
-<install: pip install Django>
+- install: `pip install Django`
 <upgrade: pip install --upgrade Django>
 <version: python3 -m django --version>
 <start_project: django-admin startproject project_name> <!-- this will create the django_admin and use (.) to avoid head_folder -->
