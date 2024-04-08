@@ -18,7 +18,7 @@
 - create_super_user: `python3 manage.py createsuperuser` <!-- for creating SUPERUSER first need to run: python manage.py migrate -->
 
 
-## windows
+# Windows
 - Install django: `py -m pip install Django`
 - check django Version : `django-admin --version` or, `python3 -m django --version`
 
@@ -62,7 +62,7 @@ django
 ### Modify the view.py
 - from django.template import loader
 - from django.http import HttpResponse
--
+
 `def members(request):`
   `template = loader.get_template('index.html')`
   `return HttpResponse(template.render())`
@@ -75,11 +75,10 @@ django
 - run: `py manage.py runserver`
 
 ## django Models
-> Here we create the tables
-
-> navigate the models.py file in app folder
-i.e, django/members/models.py:      //remember django is my head_folder_name
-> open it and add tables accroding to your need
+- Here we create the tables
+- navigate the models.py file in app folder
+- i.e, django/members/models.py:      //remember django is my head_folder_name
+- open it and add tables accroding to your need
 
 ## SQLite Database
 When we created the Django project, we got an empty SQLite database.
@@ -87,64 +86,64 @@ It was created in the my_tennis_club root folder, and has the filename db.sqlite
 By default, all Models created in the Django project will be created as tables in this database.
 
 ## Now after describing Models in members file
-run(windows): py manage.py makemigrations members
-run(ubuntu): python manage.py makemigrations members
+- run(windows): `py manage.py makemigrations members`
+- run(ubuntu): `python manage.py makemigrations members`
 
 
-After running this command Django creates a file describing the changes and stores the file in the
->> django/members/migrations/ folder with file name 0001_initial.py
+- After running this command Django creates a file describing the changes and stores the file in the
+- `django/members/migrations/ folder with file name 0001_initial.py`
 
-<Note that Django inserts an id field for your tables, which is an auto increment number (first record gets the value 1, the second record 2 etc.), this is the default behavior of Django, you can override it by describing your own id field>
+- Note that Django inserts an id field for your tables, which is an auto increment number (first record gets the value 1, the second record 2 etc.), this is the default behavior of Django, you can override it by describing your own id field
 
 ## Create table
-Now create the table coz django is not created it,Django will create and execute an SQL statement, based on the content of the new file in the django/members/migrations/ folder.
+- Now create the table coz django is not created it,Django will create and execute an SQL statement, based on the content of the new file in the django/members/migrations/ folder.
 
-run(windows): py manage.py migrate
-run(ubuntu):  python manage.py migrate
+- run(windows): `py manage.py migrate`
+- run(ubuntu):  `python manage.py migrate`
 
-<Note: Now we have Member table in our database>
+- Note: Now we have Member table in our database>
 
 ## View SQL
->To view the SQL statement that were executed from the migration above
-run(windows): py manage.py sqlmigrate members 0001
-run(ubuntu): python manage.py sqlmigrate members 0001
+- To view the SQL statement that were executed from the migration above
+- run(windows): `py manage.py sqlmigrate members 0001`
+- run(ubuntu): `python manage.py sqlmigrate members 0001`
 
 
 # Django Insert Data
 ## Add Records
-> Now if we want to add records in members Table
-We will use the Python interpreter (Python shell) to add some members to it.
-To open a Python shell, type this command:
-run(windows): py manage.py shell
-run(ubuntu): python manage.py shell
+- Now if we want to add records in members Table
+- We will use the Python interpreter (Python shell) to add some members to it.
+- To open a Python shell, type this command:
+- run(windows): `py manage.py shell`
+- run(ubuntu): `python manage.py shell`
 
->> In the opened shell write the following:
->>> from members.models import Member
+- In the opened shell write the following:
+- from members.models import Member
 
-### View the records
->>> Member.objects.all().values()
->>> Member.objects.all()
-output: <QuerySet []>  ##This is empty QuerySet Object
+## View the records
+- Member.objects.all().values()
+- Member.objects.all()
+- output: `QuerySet []`  ##This is empty QuerySet Object
 
->>Now add a record to the table on same opened shell in cmd
->>> member = Member(firstname='Emil', lastname='Refsnes')
->>> member.save()
+- Now add a record to the table on same opened shell in cmd
+- member = Member(firstname='Emil', lastname='Refsnes')
+- member.save()
 
->> to view the added records in db
->>> Member.objects.all().values()
+- to view the added records in db
+- Member.objects.all().values()
 
-### Add multiple records
->make a list of Member and execute .save() after each entry
-e.g,
->>> m1= Member(firstname='sk', lastname='kr')
->>> m2= Member(firstname='rk', lastname='kr')
->>> m3= Member(firstname='earnst', lastname='young')
->>> m_list=[m1,m2,m3]
->>> for x in m_list:
-...     x.save()
->>> Member.objects.all().values() ##this will show the tables with stored details
+## Add multiple records
+- Make a list of Member and execute .save() after each entry
+- e.g,
+- m1= Member(firstname='sk', lastname='kr')
+- m2= Member(firstname='rk', lastname='kr')
+- m3= Member(firstname='earnst', lastname='young')
+- m_list=[m1,m2,m3]
+- `for x in m_list:`
+...     `x.save()`
+- Member.objects.all().values() ##this will show the tables with stored details
 
-### Update records
+###Update records
 >open shell
 
 >>> from members.models import Member
