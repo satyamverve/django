@@ -1,45 +1,44 @@
 # Django
 ## ALL COMMANDS
 - install: `pip install Django`
-<upgrade: pip install --upgrade Django>
-<version: python3 -m django --version>
-<start_project: django-admin startproject project_name> <!-- this will create the django_admin and use (.) to avoid head_folder -->
-<run_server: python3 manage.py runserver>
-<create_app: run: python3 manage.py startapp app_name>
-<migrate: python3 manage.py migrate>  <!-- run this after modify "views.py" -->
-<make_migrations: python manage.py makemigrations members>  <!-- run this after describing "models" in "app" file -->
-<!-- after running this command a automated file created nameed "0001_initial.py" at "django/members/migrations/" location -->
-<view_sql: python manage.py sqlmigrate members 0001>   <!-- 0001 is the file created after migration -->
-<open_shell: python manage.py shell>
-<view_records: Member.objects.all().values()>
-<NOTE: After every changes we have to run the migration command i.e, "python manage.py makemigrations members" and "python manage.py migrate">
-<whitehouse: pip install whitenoise> <!-- use to serve static files(javscripts, styling etcv these are called static files) in Django -->
-<collect_static_files: python3 manage.py collectstatic> <!-- This will create a folder "productionfiles"(code is written in settings.py) to collect the static files -->
-<create_super_user: python3 manage.py createsuperuser> <!-- for creating SUPERUSER first need to run: python manage.py migrate -->
+- upgrade: `pip install --upgrade Django`
+- version: `python3 -m django --version`
+- start_project: `django-admin startproject project_name` <!-- this will create the django_admin and use (.) to avoid head_folder -->
+- run_server: `python3 manage.py runserver`
+- create_app: run: `python3 manage.py startapp app_name`
+- migrate: `python3 manage.py migrate`  <!-- run this after modify "views.py" -->
+- make_migrations: `python manage.py makemigrations members`  <!-- run this after describing "models" in "app" file -->
+- After running this command a automated file created nameed `0001_initial.py` at "django/members/migrations/" location 
+- view_sql: `python manage.py sqlmigrate members 0001`   <!-- 0001 is the file created after migration -->
+- open_shell: `python manage.py shell`
+- view_records: `Member.objects.all().values()`
+- NOTE: After every changes we have to run the migration command i.e, `python manage.py makemigrations members` and `python manage.py migrate`
+- whitehouse: `pip install whitenoise` <!-- use to serve static files(javscripts, styling etcv these are called static files) in Django -->
+- collect_static_files: `python3 manage.py collectstatic` <!-- This will create a folder "productionfiles"(code is written in settings.py) to collect the static files -->
+- create_super_user: `python3 manage.py createsuperuser` <!-- for creating SUPERUSER first need to run: python manage.py migrate -->
 
 
 ## windows
-Install django: py -m pip install Django
-check django Version : django-admin --version
-or, python3 -m django --version
+- Install django: `py -m pip install Django`
+- check django Version : `django-admin --version` or, `python3 -m django --version`
 
-<!-- Django Create Project -->
->django-admin startproject project_name
->django-admin startproject project_name . (use dot to ignore head_folder_name if you have created or named your folder otherwise bydefault django create the head_folder_name same as your project_name)
-I will named my project "my_tennis_club"
+### Django Create Project 
+- `django-admin startproject project_name .` 
+- Use dot(.) to ignore head_folder_name if you have created or name of your folder otherwise bydefault django create the head_folder_name same as your project_name)
+- I will named my project "my_tennis_club"
 
-## Run Django project 
->> navigate to head_prpoject_name
->run: py manage.py runserver
+### Run Django project 
+- Navigate to head_prpoject_name
+- `run: py manage.py runserver`
 
-run(ubuntu): python manage.py runserver 9000  <!-- you can give your specific port number -->
+- run(ubuntu): `python manage.py runserver 9000`  <!-- you can give your specific port number -->
 
-# CREATE APP
-An app is a web application that has a specific meaning in your project, like a home page, a contact form, or a members database.
+## CREATE APP
+- An app is a web application that has a specific meaning in your project, like a home page, a contact form, or a members database.
 
-I will name my app "members"
->run: python manage.py startapp members
->> This will creates a folder called "members" with some files
+- I will name my app "members"
+- run: `python manage.py startapp members`
+- This will creates a folder called "members" with some files
 
 folder structure:
 django
@@ -56,25 +55,24 @@ django
         views.py
 
 
-### templates
-> create a folder called templates in : members/templates
-> create html file inside this folder
+## templates
+- create a folder called templates in : members/templates
+- create html file inside this folder
 
-#### Modify the view.py
->from django.template import loader
->from django.http import HttpResponse
-<!-- 
-def members(request):
-  template = loader.get_template('index.html')
-  return HttpResponse(template.render()) -->
+### Modify the view.py
+- from django.template import loader
+- from django.http import HttpResponse
+-
+`def members(request):`
+  `template = loader.get_template('index.html')`
+  `return HttpResponse(template.render())`
 
-[if you get error then add your app file name in settings.py file under INSTALLED_APPS]
+- If you get error then add your app file name in settings.py file under INSTALLED_APPS
+- Then run this command:
+- run: `py manage.py migrate`
 
-#### Then run this command:
-run: py manage.py migrate
-
->> Now check the server is running or not, if not then start the server
-run: py manage.py runserver
+- Now check the server is running or not, if not then start the server
+- run: `py manage.py runserver`
 
 ## django Models
 > Here we create the tables
