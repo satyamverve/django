@@ -143,95 +143,86 @@ By default, all Models created in the Django project will be created as tables i
 ...     `x.save()`
 - Member.objects.all().values() ##this will show the tables with stored details
 
-###Update records
->open shell
+## Update records
+- open shell
+- from members.models import Member
+- x = Member.objects.all()[4]
+- x will now represent the member at index 4
 
->>> from members.models import Member
->>> x = Member.objects.all()[4]
-x will now represent the member at index 4
+- x.firstname ##output will be according to the index provided
+- now update
+- x.firstname = "Stalikken"
+- x.save()
 
->>> x.firstname ##output will be according to the index provided
->> now update
->>> x.firstname = "Stalikken"
->>> x.save()
-
->>now check the updated details
-run: Member.objects.all().values()
+- now check the updated details
+- run: `Member.objects.all().values()`
 
 
-### Delete records
->>> from members.models import Member
->>> x = Member.objects.all()[3]
-x will now represent the member at index 4(inddex starts with 0)
-
->x.delete()
+## Delete records
+- from members.models import Member
+- x = Member.objects.all()[3]
+- x will now represent the member at index 4(inddex starts with 0)
+- x.delete()
 
 # Django update model
->> To add some more fields in the "my_tennis_club/members/models.py:"
->open models.py
->add more fields or changes
-run(ubuntu): python manage.py makemigrations members
-<NOTE: After every changes we have to run the migration command i.e, python manage.py makemigrations members>
-
-run: python manage.py migrate
+- To add some more fields in the "my_tennis_club/members/models.py:"
+- open models.py
+- add more fields or changes
+- run(ubuntu): `python manage.py makemigrations members`
+- NOTE: After every changes we have to run the migration command i.e, python manage.py makemigrations members
+- run: python manage.py migrate
 
 # Display Data
->Create template> modify view> 
-
->>Now open "http://127.0.0.1:8000/members/hello/" to view the models of Member in browser with the integrated html template
-
->> Now add another template called "details.html" in the "my_tennis_club/members/templates/details.html:" to list more details about a specific member.
+- Create template> modify view> 
+- Now open "http://127.0.0.1:8000/members/hello/" to view the models of Member in browser with the integrated html template
+- Now add another template called "details.html" in the "my_tennis_club/members/templates/details.html:" to list more details about a specific member.
 
 ## Add Link in all-members Template
 The list in index.html should be clickable, and take you to the details page with the ID of the member you clicked on:
->>open my_tennis_club/members/templates/index.html:
->>update this <li>{{ x.firstname }} {{ x.lastname }}</li> line to 
-<li><a href="details/{{ x.id }}">{{ x.firstname }} {{ x.lastname }}</a></li>
+- open my_tennis_club/members/templates/index.html:
+- update this <li>{{ x.firstname }} {{ x.lastname }}</li> line to 
+`<li><a href="details/{{ x.id }}">{{ x.firstname }} {{ x.lastname }}</a></li>`
+- Create new view for the new html file in my_tennis_club/members/views.py file 
+- Add URLs in my_tennis_club/members/urls.py file
 
-### Create new view for the new html file in my_tennis_club/members/views.py file 
-### Add URLs in my_tennis_club/members/urls.py file
-
->> Now run the address bar and check the changes
+- Now run the address bar and check the changes
 i.e, http://127.0.0.1:8000/members/hello/
 
 # Django add master Template
->> {% extends "master.html" %}
+- {% extends "master.html" %}
 Extends is same like the concept of inheritence in Oops.
 extends template is used to write those html stuffs which have been using in all the templates file.
 
->> navigate "my_tennis_club/members/templates/" and create "master.html"
-<!-- master.html -->
-<!DOCTYPE html>
-<html>
-<head>
-  <title>{% block title %}{% endblock %}</title>
-</head>
-<body>
+- navigate "my_tennis_club/members/templates/" and create "master.html"
+`<!-- master.html -->`
+`<!DOCTYPE html>`
+`<html>`
+`<head>`
+  `<title>{% block title %}{% endblock %}</title>`
+`</head>`
+`<body>`
+`{% block content %}`
+`{% endblock %`}
+`</body>`
+`</html>`
 
-{% block content %}
-{% endblock %}
-
-</body>
-</html>
-
->> Modify "index.html" and "details.html" temoplates
-
->> Now run the address bar and check the changes
-i.e, http://127.0.0.1:8000/members/hello/
+- Modify "index.html" and "details.html" temoplates
+- Now run the address bar and check the changes
+- i.e, http://127.0.0.1:8000/members/hello/
 
 
-# main.html (for root path)
-> Let's create another a template called main for our root path i.e, "http://127.0.0.1:8000/"
-> Navigate to "my_tennis_club/members/templates/" and create "main.html"
-> create new view for main in "my_tennis_club/members/views.py"
-> Add url for this view in "my_tennis_club/members/urls.py"
+### main.html (for root path)
+- Let's create another a template called main for our root path i.e, "http://127.0.0.1:8000/"
+- Navigate to "my_tennis_club/members/templates/" and create "main.html"
+- create new view for main in "my_tennis_club/members/views.py"
+- Add url for this view in "my_tennis_club/members/urls.py"
 
-## Add link back to main
-The members page is missing a link back to the main page, so let us add that in the "index.html" template, in the content block:
+### Add link back to main
+- The members page is missing a link back to the main page, so let us add that in the "index.html" template, in the content block:
 
-# Django 404 (page not found)
-> for the page which doesn't exist
-> navigate "my_tennis_club/my_tennis_club/settings.py"
+### Django 404 (page not found)
+- for the page which doesn't exist
+- navigate "my_tennis_club/my_tennis_club/settings.py"
 set 
 <SECURITY WARNING: don't run with debug turned on in production!
 "DEBUG = False"
